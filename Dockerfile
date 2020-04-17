@@ -27,7 +27,7 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
 #COPY wrap_chrome_binary /opt/bin/wrap_chrome_binary
 #RUN /opt/bin/wrap_chrome_binary
 
-USER jenkins
+
 
 #============================================
 # Chrome webdriver
@@ -49,3 +49,4 @@ RUN if [ -z "$CHROME_DRIVER_VERSION" ]; \
   && chmod 755 /opt/selenium/chromedriver-$CHROME_DRIVER_VERSION \
   && sudo ln -fs /opt/selenium/chromedriver-$CHROME_DRIVER_VERSION /usr/bin/chromedriver
 
+USER jenkins
