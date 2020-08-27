@@ -18,6 +18,7 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
   && apt-get update -qqy \
   && apt-get -qqy install \
     ${CHROME_VERSION:-google-chrome-stable} \
+  && apt-get install -y smbclient \
   && rm /etc/apt/sources.list.d/google-chrome.list \
   && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
@@ -49,8 +50,5 @@ RUN if [ -z "$CHROME_DRIVER_VERSION" ]; \
   && mv /opt/selenium/chromedriver /opt/selenium/chromedriver-$CHROME_DRIVER_VERSION \
   && chmod 755 /opt/selenium/chromedriver-$CHROME_DRIVER_VERSION \
   && ln -fs /opt/selenium/chromedriver-$CHROME_DRIVER_VERSION /usr/bin/chromedriver
-
-
-RUN apt-get install smbclient
 
 USER jenkins
